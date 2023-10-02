@@ -23,3 +23,8 @@ File or Folder | Purpose
 ## Learn More
 
 Learn more at https://cap.cloud.sap/docs/get-started/.
+
+## Package to add
+npm i @sap-cloud-sdk/resilience
+
+npm i @sap-cloud-sdk/http-client
