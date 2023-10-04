@@ -28,3 +28,21 @@ Learn more at https://cap.cloud.sap/docs/get-started/.
 npm i @sap-cloud-sdk/resilience
 
 npm i @sap-cloud-sdk/http-client
+npm i hdb
+npm i @sap/hana-client
+npm i @sap/hdi
+
+## To add HANA cloud for Production
+cds add hana --for production
+
+## To add XSUAA for prod
+cds add xsuaa --for production
+
+## To Generate the xs-security
+cds compile srv/ --to xsuaa > xs-security.json
+
+## Create the MTA descriptor file for MTA-Based deployment.
+cds add mta
+
+## To Add the managed approuter as gateway to the project.
+cds add approuter --for production
