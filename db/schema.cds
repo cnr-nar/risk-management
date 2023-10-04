@@ -1,7 +1,7 @@
 namespace riskmanagement;
 
 using {managed} from '@sap/cds/common';
-using {API_BUSINESS_PARTNER as external} from '../srv/external/API_BUSINESS_PARTNER';
+
 
 entity Risks : managed {
 
@@ -12,7 +12,7 @@ entity Risks : managed {
         descr       : String;
         miti        : Association to Mitigations;
         impact      : Integer;
-        //bp          : Association to BusinessPartners;
+        bp          : Association to BusinessPartners;
         criticality : Integer;
 }
 
@@ -28,7 +28,7 @@ entity Mitigations : managed {
 
 // using an external service from S/4
 
-
+using {API_BUSINESS_PARTNER as external} from '../srv/external/API_BUSINESS_PARTNER';
 entity BusinessPartners as projection on external.A_BusinessPartner {
     key BusinessPartner,
         LastName,

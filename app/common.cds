@@ -1,19 +1,21 @@
-using {riskmanagement as rm} from '../db/schema';
+using riskmanagement as rm from '../db/schema';
 
-//Annotate Risk Elements
-
+// Annotate Risk elements
 annotate rm.Risks with {
-    ID     @title: 'Risk';
-    title  @title: 'Title';
-    owner  @title: 'Owner';
-    prio   @title: 'Priority';
-    descr  @title: 'Description';
-    miti   @title: 'Mitigation';
-    impact @title: 'Impact';
-};
+    ID          @title: 'Risk';
+    title       @title: 'Title';
+    owner       @title: 'Owner';
+    prio        @title: 'Priority';
+    descr       @title: 'Description';
+    miti        @title: 'Mitigation';
+    impact      @title: 'Impact';
+    //### BEGIN OF INSERT
+    bp          @title: 'Business Partner';
+    //### END OF INSERT
+    criticality @title: 'Criticality';
+}
 
-//Annotate Miti Elements
-
+// Annotate Miti elements
 annotate rm.Mitigations with {
     ID    @(
         UI.Hidden,
@@ -21,7 +23,18 @@ annotate rm.Mitigations with {
     );
     owner @title: 'Owner';
     descr @title: 'Description';
-};
+}
+
+//### BEGIN OF INSERT
+annotate rm.BusinessPartners with {
+    BusinessPartner @(
+        UI.Hidden,
+        Common: {Text: LastName}
+    );
+    LastName        @title: 'Last Name';
+    FirstName       @title: 'First Name';
+}
+//### END OF INSERT
 
 annotate rm.Risks with {
     miti @(Common: {
@@ -42,6 +55,30 @@ annotate rm.Risks with {
                     ValueListProperty: 'descr'
                 }
             ]
-        },
+        }
     });
-};
+    //### BEGIN OF INSERT
+    bp   @(Common: {
+        Text           : bp.LastName,
+        TextArrangement: #TextOnly,
+        ValueList      : {
+            Label         : 'Business Partners',
+            CollectionPath: 'BusinessPartners',
+            Parameters    : [
+                {
+                    $Type            : 'Common.ValueListParameterInOut',
+                    LocalDataProperty: bp_BusinessPartner,
+                    ValueListProperty: 'BusinessPartner'
+                },
+                {
+                    $Type            : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'LastName'
+                },
+                {
+                    $Type            : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'FirstName'
+                }
+            ]
+        }
+    })
+}
