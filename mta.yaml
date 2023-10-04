@@ -61,11 +61,11 @@ resources:
         xsappname: risk-management-${org}-${space}
         tenant-mode: dedicated  
         role-collections:
-        - name: 'RiskManager-${space}'
+        - name: 'RiskManager'
           description: Manage Risks
           role-template-references:
           - $XSAPPNAME.RiskManager
-        - name: 'RiskViewer-${space}'
+        - name: 'RiskViewer'
           description: View Risks
           role-template-references:
           - $XSAPPNAME.RiskViewer
