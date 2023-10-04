@@ -44,6 +44,8 @@ cds compile srv/ --to xsuaa > xs-security.json
 
 ## Create the MTA descriptor file for MTA-Based deployment.
 cds add mta
+to build mta -> mbt build -t gen --mtar mta.tar 
+to deploy mta.tar -> cf deploy gen/mta.tar
 
 ## To Add the managed approuter as gateway to the project.
 cds add approuter --for production
