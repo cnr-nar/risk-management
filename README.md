@@ -31,6 +31,7 @@ npm i @sap-cloud-sdk/http-client
 npm i hdb
 npm i @sap/hana-client
 npm i @sap/hdi
+npm i@sap/hdi-deploy
 
 ## To add HANA cloud for Production
 cds add hana --for production
